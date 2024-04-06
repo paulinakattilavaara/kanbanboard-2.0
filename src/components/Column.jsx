@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import Card from "./Card";
 
@@ -26,6 +27,7 @@ const Column = ({ title, colId }) => {
       }
     ]);
     
+    const location = useLocation();
 
       const handleButtonClick = (event) => {
         event.preventDefault();
@@ -48,10 +50,10 @@ const Column = ({ title, colId }) => {
 
       const handleSubmit = (e) => {
         e.preventDefault();
+        if (task.title.trim() !== "") {
         setShowForm(false);
-        console.log(cards)
         setCards((prevCards) => [...prevCards, task]);
-        setTask({ title: "" });
+        setTask({ title: "" })}
       }
 
     const filteredCards = cards.filter(card => card.column === colId);
@@ -63,6 +65,7 @@ const Column = ({ title, colId }) => {
         </h2>
         {filteredCards.map(card => (
                 <Card
+                    date={card.date}
                     key={card.id}
                     title={card.title}
                     id={card.id}
@@ -89,7 +92,7 @@ const Column = ({ title, colId }) => {
     </button>
   </form>
 ) : (
-  title === "Todo" && (
+    title === "Todo" && location.pathname !== "/todo" &&  (
     <button className="Button" onClick={handleButtonClick}>
       <FaPlus className="icon" />
       Skapa ny uppgift
