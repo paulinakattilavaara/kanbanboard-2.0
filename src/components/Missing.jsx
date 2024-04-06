@@ -2,7 +2,7 @@
 
 const Missing = () => {
   return (
-    <div>Missing</div>
+    <img src="./src/assets/404cat.jpg" alt="Grumpy Cat Page Not Found" className="missing"></img>
   )
 }
 

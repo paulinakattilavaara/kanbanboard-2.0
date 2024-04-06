@@ -64,6 +64,10 @@ main {
   margin: 0.2rem;
 }
 
+.Card-text:hover {
+  color: black;
+}
+
 .Card-date {
   font-size: 0.8rem;
   margin: 0.2rem;
@@ -214,4 +218,10 @@ a {
 
 a:hover {
   color:rgba(43, 43, 43, 0.847)
+}
+
+.missing {
+  padding: 3rem;
+  max-height: 90vh;
+  max-width: 100%;
 }

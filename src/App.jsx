@@ -8,6 +8,7 @@ function App() {
   return (
     <Router>
       <Header />
+      <main>
       <Routes>
         <Route path="/" element={<Board />} />
         <Route path="/todo" element={<Column title="Todo" id={1} />} />
@@ -15,6 +16,7 @@ function App() {
         <Route path="/done" element={<Column title="Done" id={3} />} />
         <Route path="*" element={<Missing />} />
       </Routes>
+      </main>
     </Router>
   );
 }
