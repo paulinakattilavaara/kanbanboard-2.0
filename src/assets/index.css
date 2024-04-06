@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: Lora, serif;
+}
+
+body {
+  min-height: 100vh;
+}
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.Column {
+  margin: 1rem;
+  padding: 0.1rem;
+  width: 15rem;
+  height: 85vh;
+  background-color: rgba(211, 211, 211, 0.847);
+  border-radius: 10px;
+  box-shadow: 2px 2px rgba(140, 140, 140, 0.153);
+}
+
+.colTitle {
+  margin: 1rem;
+}
+
+.Header {
+  padding: 0.5rem;
+  background-color: rgba(230, 229, 229, 0.752);
+  width: 100vw;
+  box-shadow: 2px 2px rgba(140, 140, 140, 0.153);
+}
+
+.Card,
+.Button,
+.addTaskBtn {
+  background-color: rgba(255, 255, 255, 0.91);
+  width: 90%;
+  border-radius: 7px;
+  margin: 0.5rem;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 2px 2px rgba(140, 140, 140, 0.153);
+}
+
+.Card {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.Card-text {
+  font-size: 1.1rem;
+  margin: 0.2rem;
+}
+
+.Card-date {
+  font-size: 0.8rem;
+  margin: 0.2rem;
+}
+
+.Button,
+.addTaskBtn {
+  border: none;
+  font-family: Lora, serif;
+  background-color: rgba(182, 179, 179, 0.726);
+  font-size: 0.9rem;
+}
+
+.Button:hover {
+  color: rgba(53, 53, 53, 0.855);
+}
+
+.icon {
+  margin-right: 0.5rem;
+}
+
+.addTaskBtn {
+  border-radius: 2rem;
+  width: 10rem;
+  padding: 0.6rem;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+
+.taskInput {
+  width: 100%;
+  padding: 0.4rem;
+  border: none;
+  margin: 0.5rem;
+}
+
+.taskForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+}
+
+.taskInput:focus {
+  outline: none;
+}
+
+.left-arrow,
+.right-arrow {
+  border: none;
+  background-color: white;
+}
+
+.arrows {
+  color: rgba(43, 43, 43, 0.847);
+  margin: 0.2rem;
+  align-self: center;
+}
+
+.Card svg {
+  color: rgba(43, 43, 43, 0.847);
+  margin-left: 2rem;
+  margin-right: 2rem;
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
+.Card svg:hover {
+  color: rgb(182, 182, 182);
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  width: 50%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  width: 20%;
+}
+
+.popup-card-text {
+  font-size: 2rem;
+}
+
+.popup-text {
+  flex: 1;
+  margin: 1rem;
+  border: none;
+  resize: none;
+  font-family: Lora, serif;
+}
+
+textarea:focus {
+  outline: none;
+  border: none;
+  font-family: Lora, serif;
+}
+
+.popup-date {
+  font-style: italic;
+  font-size: 0.9rem;
+  margin: 0.5rem;
+}
+
+.popup-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.delete-btn {
+  border: none;
+  background: none;
+  width: 20%;
+}
+
+.delete-btn svg {
+  height: 2rem;
+  width: 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color:rgba(43, 43, 43, 0.847)
+}
