@@ -2,7 +2,7 @@ import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 import { useState } from "react";
 import Popup from "./Popup";
 
-const Card = ({ title, date }) => {
+const Card = ({ title, date, id, onDelete }) => {
     const [showPopup, setShowPopup] = useState(false);
 
 
@@ -35,11 +35,9 @@ const Card = ({ title, date }) => {
         console.log("Radera kort");
         event.stopPropagation();
         event.preventDefault();
-        // deleteCard(); // med denna raderas alla korten...
-        // deleteCard(id); //funkar ej
+        onDelete(id); 
         setShowPopup(false);
       };
-
 
   return (
 <div className="Card" onClick={handleCardClick}>
@@ -64,7 +62,6 @@ const Card = ({ title, date }) => {
           card={title}
           date={date}
         //   id={id}
-        //   deleteCard={deleteCard} 
         />
       )}
     </div>

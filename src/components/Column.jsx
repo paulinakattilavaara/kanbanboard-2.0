@@ -56,6 +56,11 @@ const Column = ({ title, colId }) => {
         setTask({ title: "" })}
       }
 
+      const deleteCard = (id) => {
+        setCards(cards.filter(card => card.id !== id)); // Ta bort kortet från listan baserat på id
+    };
+
+
     const filteredCards = cards.filter(card => card.column === colId);
 
     return (
@@ -70,6 +75,7 @@ const Column = ({ title, colId }) => {
                     title={card.title}
                     id={card.id}
                     column={card.column}
+                    onDelete={() => deleteCard(card.id)}
                 />
             ))}
  
