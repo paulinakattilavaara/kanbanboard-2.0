@@ -57,12 +57,25 @@ const Column = ({ title, colId }) => {
       }
 
       const deleteCard = (id) => {
-        setCards(cards.filter(card => card.id !== id)); // Ta bort kortet från listan baserat på id
+        setCards(cards.filter(card => card.id !== id));
+    };
+
+      const onMove = (cardId, newColumnId) => {
+        setCards(prevCards => {
+            return prevCards.map(card => {
+                if (card.id === cardId) {
+                    return { ...card, column: newColumnId };
+                } else {
+                    return card;
+                }
+            });
+        });
+        console.log(`Kort med id ${cardId} flyttades till kolumn ${newColumnId}.`);
     };
 
 
     const filteredCards = cards.filter(card => card.column === colId);
-
+    console.log(filteredCards);
     return (
       <div className="Column">
         <h2 className="colTitle">
@@ -75,6 +88,9 @@ const Column = ({ title, colId }) => {
                     title={card.title}
                     id={card.id}
                     column={card.column}
+                    colId={colId}
+                    onMove={onMove}
+                    card={card}
                     onDelete={() => deleteCard(card.id)}
                 />
             ))}

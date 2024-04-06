@@ -2,7 +2,7 @@ import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 import { useState } from "react";
 import Popup from "./Popup";
 
-const Card = ({ title, date, id, onDelete }) => {
+const Card = ({ title, date, id, onDelete, onMove, colId }) => {
     const [showPopup, setShowPopup] = useState(false);
 
 
@@ -13,16 +13,18 @@ const Card = ({ title, date, id, onDelete }) => {
         console.log("Card-klick")
       };
 
-    const handleLeftClick = (event) => {
+      const handleLeftClick = (event) => {
         event.stopPropagation()
         event.preventDefault()
         console.log("Klickat vänster.")
+        onMove(id, colId - 1); 
     };
-
+    
     const handleRightClick = (event) => {
         event.stopPropagation()
         event.preventDefault()
         console.log("Klickat höger.")
+        onMove(id, colId + 1); 
     };
 
     const handleClose = (event) => {
@@ -48,10 +50,10 @@ const Card = ({ title, date, id, onDelete }) => {
         {date}
         </p>
       <div className="arrows">
-        <button className="left-arrow" onClick={handleLeftClick}>
+        <button className="left-arrow" onClick={(event) => handleLeftClick(event, colId)}>
           <FaArrowAltCircleLeft />
         </button>
-        <button className="right-arrow" onClick={handleRightClick}>
+        <button className="right-arrow" onClick={(event) => handleRightClick(event, colId)}>
           <FaArrowAltCircleRight />
         </button>
       </div>
