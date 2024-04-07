@@ -12,7 +12,6 @@ const Card = ({ title, date, id, onDelete, onMove, colId }) => {
         event.preventDefault();
         event.stopPropagation();
         setShowPopup(true);
-        console.log("Card-klick")
       };
 
     const handleClose = (event) => {
@@ -22,7 +21,6 @@ const Card = ({ title, date, id, onDelete, onMove, colId }) => {
       };
 
       const handleDelete = (event) => {
-        console.log("Radera kort");
         event.stopPropagation();
         event.preventDefault();
         onDelete(id); 
