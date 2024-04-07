@@ -62,20 +62,6 @@ const Column = ({ title, colId }) => {
         setCards(cards.filter(card => card.id !== id));
     };
 
-
-    //   const onMove = (cardId, newColumnId) => {
-    //     setCards(prevCards => {
-    //         return prevCards.map(card => {
-    //             if (card.id === cardId) {
-    //                 return { ...card, column: newColumnId };
-    //             } else {
-    //                 return card;
-    //             }
-    //         });
-    //     });
-    //     console.log(`Kort med id ${cardId} flyttades till kolumn ${newColumnId}.`);
-    // };
-
     const onMove = (e, cardId, newColumnId) => {
       setCards(prevCards => {
           return prevCards.map(card => {
