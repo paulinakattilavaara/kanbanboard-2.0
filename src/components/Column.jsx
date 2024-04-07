@@ -76,6 +76,11 @@ const Column = ({ title, colId }) => {
 
     const filteredCards = cards.filter(card => card.column === colId);
     console.log(filteredCards);
+
+    const todoCards = cards.filter(card => card.column === 1); 
+    const doingCards = cards.filter(card => card.column === 2);
+    const doneCards = cards.filter(card => card.column === 3);
+
     return (
       <div className="Column">
         <h2 className="colTitle">
@@ -121,7 +126,54 @@ const Column = ({ title, colId }) => {
     </button>
   )
 )}
-            
+      {location.pathname === "/todo" && (
+       todoCards.map((card) => (
+        <Card
+          date={card.date}
+          key={card.id}
+          title={card.title}
+          id={card.id}
+          column={card.column}
+          colId={colId}
+          onMove={onMove}
+          card={card}
+          onDelete={() => deleteCard(card.id)}
+        />
+      ))
+      )}
+
+{location.pathname === "/doing" && (
+       doingCards.map((card) => (
+        <Card
+          date={card.date}
+          key={card.id}
+          title={card.title}
+          id={card.id}
+          column={card.column}
+          colId={colId}
+          onMove={onMove}
+          card={card}
+          onDelete={() => deleteCard(card.id)}
+        />
+      ))
+      )}
+
+
+{location.pathname === "/done" && (
+       doneCards.map((card) => (
+        <Card
+          date={card.date}
+          key={card.id}
+          title={card.title}
+          id={card.id}
+          column={card.column}
+          colId={colId}
+          onMove={onMove}
+          card={card}
+          onDelete={() => deleteCard(card.id)}
+        />
+      ))
+      )}
 
       </div>
     );
