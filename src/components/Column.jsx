@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import Card from "./Card";
 
+
 const Column = ({ title, colId }) => {
     const [task, setTask] = useState({title: ""});
     const [showForm, setShowForm] = useState(false);
@@ -95,15 +96,17 @@ const Column = ({ title, colId }) => {
     const doingCards = cards.filter(card => card.column === 2);
     const doneCards = cards.filter(card => card.column === 3);
 
+
     useEffect(() => {
-      console.log(cards);
-    }, [cards]);
+      console.log(filteredCards);
+    }, [filteredCards]);
 
     return (
       <div className="Column">
         <h2 className="colTitle">
           {title}
         </h2>
+
         {filteredCards.map(card => (
                 <Card
                     date={card.date}
@@ -192,7 +195,6 @@ const Column = ({ title, colId }) => {
         />
       ))
       )}
-
       </div>
     );
 };

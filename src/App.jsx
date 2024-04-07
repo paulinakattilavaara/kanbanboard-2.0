@@ -3,10 +3,12 @@ import Board from "./components/Board";
 import Header from "./components/Header";
 import Column from "./components/Column";
 import Missing from "./components/Missing";
+import { BackgroundProvider } from "./context/BackgroundContext";
 
 function App() {
   return (
     <Router>
+      <BackgroundProvider>
       <Header />
       <main>
       <Routes>
@@ -17,6 +19,7 @@ function App() {
         <Route path="*" element={<Missing />} />
       </Routes>
       </main>
+      </BackgroundProvider>
     </Router>
   );
 }
