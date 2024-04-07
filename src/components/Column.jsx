@@ -62,19 +62,24 @@ const Column = ({ title, colId }) => {
         setCards(cards.filter(card => card.id !== id));
     };
 
-    const onMove = (e, cardId, newColumnId) => {
-      setCards(prevCards => {
-          return prevCards.map(card => {
-              if (card.id === cardId) {
-                  return { ...card, column: newColumnId };
-              } else {
-                  return card;
-              }
-          });
-      });
-      console.log(`Kort med id ${cardId} flyttades till kolumn ${newColumnId}.`);
-  };
-
+  const onMove = (e, cardId, newColumnId) => {
+    if (newColumnId >= 1 && newColumnId <= 3) {
+        setCards(prevCards => {
+            return prevCards.map(card => {
+                if (card.id === cardId) {
+                    return { ...card, column: newColumnId };
+                } else {
+                    return card;
+                }
+            });
+        });
+        console.log(`Kort med id ${cardId} flyttades till kolumn ${newColumnId}.`);
+    } else {
+        console.log(`Felaktigt kolumnvärde: ${newColumnId}.`);
+        e.stopPropagation();
+        e.preventDefault();
+    }
+};
 
     const filteredCards = cards.filter(card => card.column === colId);
 
