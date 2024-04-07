@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import Card from "./Card";
@@ -56,30 +56,48 @@ const Column = ({ title, colId }) => {
         setTask({ title: "" })}
       }
 
+
       const deleteCard = (id) => {
         setCards(cards.filter(card => card.id !== id));
     };
 
-      const onMove = (cardId, newColumnId) => {
-        setCards(prevCards => {
-            return prevCards.map(card => {
-                if (card.id === cardId) {
-                    return { ...card, column: newColumnId };
-                } else {
-                    return card;
-                }
-            });
-        });
-        console.log(`Kort med id ${cardId} flyttades till kolumn ${newColumnId}.`);
-    };
+
+    //   const onMove = (cardId, newColumnId) => {
+    //     setCards(prevCards => {
+    //         return prevCards.map(card => {
+    //             if (card.id === cardId) {
+    //                 return { ...card, column: newColumnId };
+    //             } else {
+    //                 return card;
+    //             }
+    //         });
+    //     });
+    //     console.log(`Kort med id ${cardId} flyttades till kolumn ${newColumnId}.`);
+    // };
+
+    const onMove = (e, cardId, newColumnId) => {
+      setCards(prevCards => {
+          return prevCards.map(card => {
+              if (card.id === cardId) {
+                  return { ...card, column: newColumnId };
+              } else {
+                  return card;
+              }
+          });
+      });
+      console.log(`Kort med id ${cardId} flyttades till kolumn ${newColumnId}.`);
+  };
 
 
     const filteredCards = cards.filter(card => card.column === colId);
-    console.log(filteredCards);
 
     const todoCards = cards.filter(card => card.column === 1); 
     const doingCards = cards.filter(card => card.column === 2);
     const doneCards = cards.filter(card => card.column === 3);
+
+    useEffect(() => {
+      console.log(cards);
+    }, [cards]);
 
     return (
       <div className="Column">

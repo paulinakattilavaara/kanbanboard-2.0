@@ -1,10 +1,12 @@
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Popup from "./Popup";
 
 const Card = ({ title, date, id, onDelete, onMove, colId }) => {
     const [showPopup, setShowPopup] = useState(false);
 
+    const location = useLocation();
 
     const handleCardClick = (event) => {
         event.preventDefault();
@@ -13,19 +15,19 @@ const Card = ({ title, date, id, onDelete, onMove, colId }) => {
         console.log("Card-klick")
       };
 
-      const handleLeftClick = (event) => {
-        event.stopPropagation()
-        event.preventDefault()
-        console.log("Klickat vänster.")
-        onMove(id, colId - 1); 
-    };
+    //   const handleLeftClick = (event) => {
+    //     event.stopPropagation()
+    //     event.preventDefault()
+    //     console.log("Klickat vänster.")
+    //     onMove(id, colId - 1); 
+    // };
     
-    const handleRightClick = (event) => {
-        event.stopPropagation()
-        event.preventDefault()
-        console.log("Klickat höger.")
-        onMove(id, colId + 1); 
-    };
+    // const handleRightClick = (event) => {
+    //     event.stopPropagation()
+    //     event.preventDefault()
+    //     console.log("Klickat höger.")
+    //     onMove(id, colId + 1); 
+    // };
 
     const handleClose = (event) => {
         event.stopPropagation();
@@ -49,21 +51,24 @@ const Card = ({ title, date, id, onDelete, onMove, colId }) => {
       <p className="Card-date">
         {date}
         </p>
+        {location.pathname === "/" && (
       <div className="arrows">
-        <button className="left-arrow" onClick={(event) => handleLeftClick(event, colId)}>
+        {/* <button className="left-arrow" onClick={(event) => handleLeftClick(event, colId)}> */}
+        <button className="left-arrow" onClick={(e)=>onMove(e, id, colId - 1)}> 
           <FaArrowAltCircleLeft />
         </button>
-        <button className="right-arrow" onClick={(event) => handleRightClick(event, colId)}>
+        {/* <button className="right-arrow" onClick={(event) => handleRightClick(event, colId)}> */}
+        <button className="right-arrow" onClick={(e)=>onMove(e, id, colId + 1)}> 
           <FaArrowAltCircleRight />
         </button>
-      </div>
+      </div>)}
       {showPopup && (
         <Popup
           onClose={handleClose}
           onDelete={handleDelete}
           card={title}
           date={date}
-        //   id={id}
+          id={id}
         />
       )}
     </div>
