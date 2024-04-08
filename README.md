@@ -8,5 +8,3 @@ så som användning av React-bibliotek och viss statehantering med Context.
 I boarden kan användaren skapa nya cards, redigera dem i en popup och klicka sig in på enskilda kolumner.       
 Min sida har förbättringspotential men jag har gjort så gott jag kan!
 Jag jobbar vidare på kravet att kunna flytta cards mellan kolumner... 
-
-Tyvärr syns inte min 404 sida på Netlify 😿
