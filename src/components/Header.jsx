@@ -4,25 +4,28 @@ import BackgroundContext from "../context/BackgroundContext";
 import { BsPaintBucket } from "react-icons/bs";
 
 const Header = () => {
+  
+  const navigate = useNavigate();
 
-const navigate = useNavigate();
+  const { backgroundColor, changeBackgroundColor } = useContext(BackgroundContext);
+  const [changedBackground, setChangedBackground] = useState(false);
 
-const { backgroundColor, changeBackgroundColor } = useContext(BackgroundContext);
-const [changedBackground, setChangedBackground] = useState(false);
+  const changeColor = () => {
+    setChangedBackground(prevState => !prevState);
+  };
 
-const changeColor = () => {
-  const color = changedBackground ? "#9ebbba" : "#FFFFFF";
-  changeBackgroundColor(color);
-  setChangedBackground(!changedBackground);
-};
+  const backToHome = () => {
+    navigate("/");
+  }
 
-const backToHome = () => {
-  navigate("/");
-}
+  useEffect(() => {
+    const color = changedBackground ? "#9ebbba" : "#FFFFFF";
+    changeBackgroundColor(color);
+  }, [changedBackground, changeBackgroundColor]);
 
-useEffect(() => {
-  document.body.style.backgroundColor = backgroundColor;
-},[backgroundColor])
+  useEffect(() => {
+    document.body.style.backgroundColor = backgroundColor;
+  }, [backgroundColor]);
 
   return (
     <header className="Header">
