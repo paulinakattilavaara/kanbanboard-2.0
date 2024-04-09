@@ -18,6 +18,11 @@ function App() {
   }, []);
 
 
+  const deleteCardLocal = (id) => {
+    setCardsFromLocalStorage(cardsFromLocalStorage.filter(card => card.id !== id));
+};
+
+
   return (
     <Router>
       <BackgroundProvider>
@@ -25,9 +30,9 @@ function App() {
       <main>
       <Routes>
         <Route path="/" element={<Board />} />
-        <Route path="/todo" element={<Column title="Todo" id={1} cardsFromLocalStorage={cardsFromLocalStorage} />} />
-        <Route path="/doing" element={<Column title="Doing" id={2} cardsFromLocalStorage={cardsFromLocalStorage} />} />
-        <Route path="/done" element={<Column title="Done" id={3} cardsFromLocalStorage={cardsFromLocalStorage} />} />
+        <Route path="/todo" element={<Column title="Todo" id={1} cardsFromLocalStorage={cardsFromLocalStorage} deleteCardLocal={deleteCardLocal} />} />
+        <Route path="/doing" element={<Column title="Doing" id={2} cardsFromLocalStorage={cardsFromLocalStorage} deleteCardLocal={deleteCardLocal} />} />
+        <Route path="/done" element={<Column title="Done" id={3} cardsFromLocalStorage={cardsFromLocalStorage} deleteCardLocal={deleteCardLocal} />} />
         <Route path="*" element={<Missing />} />
       </Routes>
       </main>

@@ -2,7 +2,7 @@ import { FaPlus } from "react-icons/fa";
 import Card from "./Card";
 import { useLocation } from "react-router-dom";
 
-const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, doingCards, doneCards, task, handleInput, handleSubmit, deleteCard, cardsFromLocalStorage }) => {
+const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, doingCards, doneCards, task, handleInput, handleSubmit, deleteCard, cardsFromLocalStorage, deleteCardLocal }) => {
 
   const location = useLocation();
 
@@ -74,7 +74,7 @@ const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, 
       title={card.title}
       id={card.id}
       column={card.column}
-      onDelete={() => deleteCard(card.id)}
+      onDelete={() => deleteCardLocal(card.id)}
     />
   ))
 }
@@ -88,7 +88,7 @@ const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, 
       title={card.title}
       id={card.id}
       column={card.column}
-      onDelete={() => deleteCard(card.id)}
+      onDelete={() => deleteCardLocal(card.id)}
     />
   ))
 }
@@ -102,7 +102,7 @@ const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, 
       title={card.title}
       id={card.id}
       column={card.column}
-      onDelete={() => deleteCard(card.id)}
+      onDelete={() => deleteCardLocal(card.id)}
     />
   ))
 }
