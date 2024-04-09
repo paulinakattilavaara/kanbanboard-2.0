@@ -1,110 +1,47 @@
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import Card from "./Card";
+import { useLocation } from "react-router-dom";
 
 
-const Column = ({ title, colId }) => {
-    const [task, setTask] = useState({title: ""});
-    const [showForm, setShowForm] = useState(false);
-    const [cards, setCards] = useState([
-      {
-          title: "Lära mig React",
-          date: "2024-04-05",
-          id: 1712324705868,
-          column: 1
-      },
-      {
-          title: "Lyssna på podcast",
-          date: "2024-04-06",
-          id: 1712324705869,
-          column: 2
-      },
-      {
-          title: "Tvätta",
-          date: "2024-04-07",
-          id: 1712324705870,
-          column: 3
-      }
-    ]);
-    
-    const location = useLocation();
+const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, doingCards, doneCards, task, handleInput, handleSubmit }) => {
 
-      const handleButtonClick = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        setShowForm(true);
-      };
+  const location = useLocation();
 
-      const handleInput = (e) => {
-        const now = new Date().toLocaleDateString();
-        e.preventDefault();
-        e.stopPropagation();
-        setTask({
-          title: e.target.value,
-          date: now,
-          id: new Date().getTime(),
-          column: 1
-        })
-    }
+  let cardsToRender;
 
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        if (task.title.trim() !== "") {
-        setShowForm(false);
-        setCards((prevCards) => [...prevCards, task]);
-        setTask({ title: "" })}
-      }
+  if (title === "Todo") {
+    cardsToRender = todoCards;
+  } else if (title === "Doing") {
+    cardsToRender = doingCards;
+  } else if (title === "Done") {
+    cardsToRender = doneCards;
+  } else {
+    cardsToRender = []; 
+  }
 
 
-      const deleteCard = (id) => {
-        setCards(cards.filter(card => card.id !== id));
-    };
 
-  const onMove = (e, cardId, newColumnId) => {
-    if (newColumnId >= 1 && newColumnId <= 3) {
-        setCards(prevCards => {
-            return prevCards.map(card => {
-                if (card.id === cardId) {
-                    return { ...card, column: newColumnId };
-                } else {
-                    return card;
-                }
-            });
-        });
-        console.log(`Kort med id ${cardId} flyttades till kolumn ${newColumnId}.`);
-    } else {
-        console.log(`Felaktigt kolumnvärde: ${newColumnId}.`);
-        e.stopPropagation();
-        e.preventDefault();
-    }
-};
-
-    const filteredCards = cards.filter(card => card.column === colId);
-
-    const todoCards = cards.filter(card => card.column === 1); 
-    const doingCards = cards.filter(card => card.column === 2);
-    const doneCards = cards.filter(card => card.column === 3);
 
     return (
       <div className="Column">
         <h2 className="colTitle">
           {title}
         </h2>
-      
-        {filteredCards.map(card => (
-                <Card
-                    date={card.date}
-                    key={card.id}
-                    title={card.title}
-                    id={card.id}
-                    column={card.column}
-                    colId={colId}
-                    onMove={onMove}
-                    card={card}
-                    onDelete={() => deleteCard(card.id)}
-                />
-            ))}
+
+
+        {cardsToRender && cardsToRender.map(card => (
+        <Card
+          date={card.date}
+          key={card.id}
+          title={card.title}
+          id={card.id}
+          column={card.column}
+          colId={colId}
+          onMove={onMove}
+          card={card}
+          onDelete={() => deleteCard(card.id)}
+        />
+      ))}
 
         {showForm ? (
   <form className="taskForm">
@@ -131,7 +68,9 @@ const Column = ({ title, colId }) => {
     </button>
   )
 )}
-      {location.pathname === "/todo" && (
+
+
+      {/* {location.pathname === "/todo" (
        todoCards.map((card) => (
         <Card
           date={card.date}
@@ -178,7 +117,7 @@ const Column = ({ title, colId }) => {
           onDelete={() => deleteCard(card.id)}
         />
       ))
-      )}
+      )} */}
       </div>
     );
 };
