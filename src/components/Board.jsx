@@ -1,7 +1,6 @@
 import Column from "./Column";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Board = () => {
   const [task, setTask] = useState({title: ""});
@@ -26,8 +25,6 @@ const Board = () => {
         column: 3
     }
   ]);
-  
-  const location = useLocation();
 
     const handleButtonClick = (event) => {
       event.preventDefault();
@@ -76,7 +73,9 @@ const onMove = (e, cardId, newColumnId) => {
   const doingCards = cards.filter(card => card.column === 2);
   const doneCards = cards.filter(card => card.column === 3);
 
-
+  useEffect(() => {
+    localStorage.setItem('cards', JSON.stringify(cards));
+  }, [cards]);
 
 
   return (
@@ -91,6 +90,8 @@ const onMove = (e, cardId, newColumnId) => {
         task={task}
         handleInput={handleInput}
         handleSubmit={handleSubmit}
+        deleteCard={deleteCard}
+        cards={cards}
          />
       </Link>
 
@@ -100,6 +101,8 @@ const onMove = (e, cardId, newColumnId) => {
         doingCards={doingCards} 
         onMove={onMove} 
         handleButtonClick={handleButtonClick}
+        deleteCard={deleteCard}
+        cards={cards}
      />
       </Link>
         
@@ -108,7 +111,8 @@ const onMove = (e, cardId, newColumnId) => {
         doneCards={doneCards}
         onMove={onMove} 
         handleButtonClick={handleButtonClick}
-
+        deleteCard={deleteCard}
+        cards={cards}
        />
       </Link>
     </>

@@ -2,8 +2,7 @@ import { FaPlus } from "react-icons/fa";
 import Card from "./Card";
 import { useLocation } from "react-router-dom";
 
-
-const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, doingCards, doneCards, task, handleInput, handleSubmit }) => {
+const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, doingCards, doneCards, task, handleInput, handleSubmit, deleteCard, cardsFromLocalStorage }) => {
 
   const location = useLocation();
 
@@ -18,9 +17,6 @@ const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, 
   } else {
     cardsToRender = []; 
   }
-
-
-
 
     return (
       <div className="Column">
@@ -69,55 +65,47 @@ const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, 
   )
 )}
 
+{location.pathname === "/todo" && cardsFromLocalStorage
+  .filter(card => card.column === 1) 
+  .map(card => (
+    <Card
+      key={card.id}
+      date={card.date}
+      title={card.title}
+      id={card.id}
+      column={card.column}
+      onDelete={() => deleteCard(card.id)}
+    />
+  ))
+}
 
-      {/* {location.pathname === "/todo" (
-       todoCards.map((card) => (
-        <Card
-          date={card.date}
-          key={card.id}
-          title={card.title}
-          id={card.id}
-          column={card.column}
-          colId={colId}
-          onMove={onMove}
-          card={card}
-          onDelete={() => deleteCard(card.id)}
-        />
-      ))
-      )}
+{location.pathname === "/doing" && cardsFromLocalStorage
+  .filter(card => card.column === 2) 
+  .map(card => (
+    <Card
+      key={card.id}
+      date={card.date}
+      title={card.title}
+      id={card.id}
+      column={card.column}
+      onDelete={() => deleteCard(card.id)}
+    />
+  ))
+}
 
-{location.pathname === "/doing" && (
-       doingCards.map((card) => (
-        <Card
-          date={card.date}
-          key={card.id}
-          title={card.title}
-          id={card.id}
-          column={card.column}
-          colId={colId}
-          onMove={onMove}
-          card={card}
-          onDelete={() => deleteCard(card.id)}
-        />
-      ))
-      )}
-
-
-{location.pathname === "/done" && (
-       doneCards.map((card) => (
-        <Card
-          date={card.date}
-          key={card.id}
-          title={card.title}
-          id={card.id}
-          column={card.column}
-          colId={colId}
-          onMove={onMove}
-          card={card}
-          onDelete={() => deleteCard(card.id)}
-        />
-      ))
-      )} */}
+{location.pathname === "/done" && cardsFromLocalStorage
+  .filter(card => card.column === 3) 
+  .map(card => (
+    <Card
+      key={card.id}
+      date={card.date}
+      title={card.title}
+      id={card.id}
+      column={card.column}
+      onDelete={() => deleteCard(card.id)}
+    />
+  ))
+}
       </div>
     );
 };
