@@ -175,6 +175,7 @@ main {
 
 .popup-card-text {
   font-size: 2rem;
+  padding: 0.2rem 2rem 0.2rem 0.2rem;
 }
 
 .popup-text {
@@ -203,7 +204,7 @@ textarea:focus {
   justify-content: space-between;
 }
 
-.delete-btn {
+.delete-btn, .save-btn {
   border: none;
   background: none;
   width: 20%;
@@ -212,6 +213,16 @@ textarea:focus {
 .delete-btn svg {
   height: 2rem;
   width: 2rem;
+}
+
+.save-btn svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.popup-btns {
+  display: flex;
+  justify-content: space-between;
 }
 
 a {

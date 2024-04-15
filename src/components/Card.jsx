@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Popup from "./Popup";
 
-const Card = ({ title, date, id, onDelete, onMove, colId }) => {
+const Card = ({ card, updateCardTitle, title, date, id, onDelete, onMove, colId }) => {
     const [showPopup, setShowPopup] = useState(false);
 
     const location = useLocation();
@@ -15,7 +15,7 @@ const Card = ({ title, date, id, onDelete, onMove, colId }) => {
       };
 
     const handleClose = (event) => {
-        event.stopPropagation();
+        event.stopPropagation(); 
         event.preventDefault();
         setShowPopup(false);
       };
@@ -26,6 +26,12 @@ const Card = ({ title, date, id, onDelete, onMove, colId }) => {
         onDelete(id); 
         setShowPopup(false);
       };
+
+
+      const handleUpdateTitle = (newTitle) => {
+        updateCardTitle(card.id, newTitle);
+      };
+
 
   return (
 <div className="Card" onClick={handleCardClick}>
@@ -49,6 +55,8 @@ const Card = ({ title, date, id, onDelete, onMove, colId }) => {
           onClose={handleClose}
           onDelete={handleDelete}
           card={title}
+          // card={card}
+          updateTitle={handleUpdateTitle}
           date={date}
           id={id}
         />

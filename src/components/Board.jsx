@@ -67,7 +67,14 @@ const onMove = (e, cardId, newColumnId) => {
     }
 };
 
-  // const filteredCards = cards.filter(card => card.column === colId);
+
+  const updateCardTitle = (id, newTitle) => {
+    setCards(prevCards =>
+      prevCards.map(card => (card.id === id ? { ...card, title: newTitle } : card))
+    );
+  };
+
+
 
   const todoCards = cards.filter(card => card.column === 1); 
   const doingCards = cards.filter(card => card.column === 2);
@@ -92,6 +99,7 @@ const onMove = (e, cardId, newColumnId) => {
         handleSubmit={handleSubmit}
         deleteCard={deleteCard}
         cards={cards}
+        updateCardTitle={updateCardTitle}
          />
       </Link>
 
@@ -103,6 +111,7 @@ const onMove = (e, cardId, newColumnId) => {
         handleButtonClick={handleButtonClick}
         deleteCard={deleteCard}
         cards={cards}
+        updateCardTitle={updateCardTitle}
      />
       </Link>
         
@@ -113,6 +122,7 @@ const onMove = (e, cardId, newColumnId) => {
         handleButtonClick={handleButtonClick}
         deleteCard={deleteCard}
         cards={cards}
+        updateCardTitle={updateCardTitle} 
        />
       </Link>
     </>

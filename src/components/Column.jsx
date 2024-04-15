@@ -2,8 +2,8 @@ import { FaPlus } from "react-icons/fa";
 import Card from "./Card";
 import { useLocation } from "react-router-dom";
 
-const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, doingCards, doneCards, task, handleInput, handleSubmit, deleteCard, cardsFromLocalStorage, deleteCardLocal }) => {
-
+const Column = ({ cards, updateCardTitle, title, colId, onMove, showForm, handleButtonClick, todoCards, doingCards, doneCards, task, handleInput, handleSubmit, deleteCard, cardsFromLocalStorage, deleteCardLocal }) => {
+//cards och updateCardTitle nya
   const location = useLocation();
 
   let cardsToRender;
@@ -36,6 +36,7 @@ const Column = ({ title, colId, onMove, showForm, handleButtonClick, todoCards, 
           onMove={onMove}
           card={card}
           onDelete={() => deleteCard(card.id)}
+          updateCardTitle={updateCardTitle} //NY
         />
       ))}
 
