@@ -2,7 +2,7 @@ import Column from "./Column";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-const Board = () => {
+const Board = ({ updateCards }) => {
   const [task, setTask] = useState({title: ""});
   const [showForm, setShowForm] = useState(false);
   const [cards, setCards] = useState([
@@ -74,7 +74,10 @@ const onMove = (e, cardId, newColumnId) => {
     );
   };
 
-
+  useEffect(() => {
+    localStorage.setItem('cards', JSON.stringify(cards));
+    updateCards(cards);
+  }, [cards, updateCards]);
 
   const todoCards = cards.filter(card => card.column === 1); 
   const doingCards = cards.filter(card => card.column === 2);

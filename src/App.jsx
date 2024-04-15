@@ -29,7 +29,7 @@ function App() {
       <Header />
       <main>
       <Routes>
-        <Route path="/" element={<Board />} />
+        <Route path="/" element={<Board updateCards={setCardsFromLocalStorage} />} />
         <Route path="/todo" element={<Column title="Todo" id={1} cardsFromLocalStorage={cardsFromLocalStorage} deleteCardLocal={deleteCardLocal} />} />
         <Route path="/doing" element={<Column title="Doing" id={2} cardsFromLocalStorage={cardsFromLocalStorage} deleteCardLocal={deleteCardLocal} />} />
         <Route path="/done" element={<Column title="Done" id={3} cardsFromLocalStorage={cardsFromLocalStorage} deleteCardLocal={deleteCardLocal} />} />

@@ -3,7 +3,7 @@ import Card from "./Card";
 import { useLocation } from "react-router-dom";
 
 const Column = ({ cards, updateCardTitle, title, colId, onMove, showForm, handleButtonClick, todoCards, doingCards, doneCards, task, handleInput, handleSubmit, deleteCard, cardsFromLocalStorage, deleteCardLocal }) => {
-//cards och updateCardTitle nya
+
   const location = useLocation();
 
   let cardsToRender;
@@ -36,7 +36,7 @@ const Column = ({ cards, updateCardTitle, title, colId, onMove, showForm, handle
           onMove={onMove}
           card={card}
           onDelete={() => deleteCard(card.id)}
-          updateCardTitle={updateCardTitle} //NY
+          updateCardTitle={updateCardTitle} 
         />
       ))}
 
